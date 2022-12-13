@@ -83,11 +83,11 @@ def further_preprocess(filepath=r'data.json'):
     data = json.load(open(filepath))
     artist_dict = generate_artist_song_dict(data)
     filtered_artist_dict = filter_artists_by_songs_number(artist_dict, 50,1000)
-    artist_info_dict = generate_artist_ranking_info(filtered_artist_dict)
+    # artist_info_dict = generate_artist_ranking_info(filtered_artist_dict)
     # sorted_artist_list = list(artist_info_dict.keys())
     # sorted_artist_list.sort(reverse=True, key=lambda a:artist_info_dict[a]["mse"])
     save_json(filtered_artist_dict, filepath="artist_song_dict.json")
-    save_json(artist_info_dict, filepath="artist_rank_info_dict.json")
+    # save_json(artist_info_dict, filepath="artist_rank_info_dict.json")
     # save_json(sorted_artist_list, filepath="sorted_artist_list.json")
 
 
