@@ -11,7 +11,8 @@ For example, a dataset on actors with artistic attributes such as genre or emoti
 
 
 ## Visualization Design
-<img src='./img/modal.png'></img>
+<img style='height:210px;width:auto;' src='./img/modal.png'></img>
+
 The system starts out by presenting a modal with necessary information to introduce the system to users.
 Once the user clicks `Got it!`, they can start their exploration freely.
 Each visualization has an info icon explaining the goal and usage of the visualization.
@@ -32,9 +33,8 @@ A threshold year can be set to filter out songs that are released after that yea
 <img src='./img/info_icon_2.png'></img>
 The effect of filtering out some older songs is that the whole beeswarm chart needs to be updated accordingly, because now the x-axis coordinates for the singers are different.
 The update animation is shown in the video below:
-<video width="320" height="240" controls>
-  <source src="https://www.youtube.com/watch?v=DyQGx8WWHn8" type="video/mov">
-</video>
+
+[![beeswarm_update](img/beeswarm_update.png)](https://www.youtube.com/watch?v=DyQGx8WWHn8)
 
 ### Animated Radar Chart
 The radar chart arranges the songs of the selected singer in a sequence by year.
@@ -46,6 +46,15 @@ The design behind the combination of an animated radar chart and a bar chart is 
 A relatively static bar chart is needed as the pattern can be long-term and is gradually observed in animation, but in a static bar chart user can observe the same pattern at one glance.
 
 A demo can be seen in the video below:
-<video width="320" height="240" controls>
-  <source src="https://www.youtube.com/watch?v=gI04xCrxNSg" type="video/mov">
-</video>
+[![radar_animation](img/radar_animation.png)](https://www.youtube.com/watch?v=gI04xCrxNSg)
+
+
+## Setup
+### Dataset
+To run the system, download the [`dataset`](https://www.kaggle.com/datasets/ektanegi/spotifydata-19212020) Kaggle and put the files under `src/preproces`. 
+Then execute `preprocess.py`, which should generate `artist_song_dict.json`.
+Move it under `src/assets/data` and the data is ready.
+
+### Launch
+To launch the system, execute `npm i` and then `npm run dev`. 
+This should host the system on `localhost:5173` (port number may vary).
