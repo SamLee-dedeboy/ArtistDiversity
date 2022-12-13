@@ -30,7 +30,9 @@ Each 'bee' on the chart represents a singer and the x-axis encodes number of son
 The assumption behind using this visualization and encoding is that the more songs a singer have released, the more likely they will be 'diverse'sed, the more likely they will be 'diverse'.
 
 A threshold year can be set to filter out songs that are released after that year, as shown:
+
 <img src='./img/info_icon_2.png'></img>
+
 The effect of filtering out some older songs is that the whole beeswarm chart needs to be updated accordingly, because now the x-axis coordinates for the singers are different.
 The update animation is shown in the video below:
 
@@ -46,6 +48,7 @@ The design behind the combination of an animated radar chart and a bar chart is 
 A relatively static bar chart is needed as the pattern can be long-term and is gradually observed in animation, but in a static bar chart user can observe the same pattern at one glance.
 
 A demo can be seen in the video below:
+
 [![radar_animation](img/radar_animation.png)](https://www.youtube.com/watch?v=gI04xCrxNSg)
 
 
