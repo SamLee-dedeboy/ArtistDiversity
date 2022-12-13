@@ -1,16 +1,51 @@
-# Vue 3 + TypeScript + Vite
+# Visualizing Artist Diversity
+Goal of the system is to visualize `Artist Diversity` through visualizaions. 
+An artist being 'diverse' means he/she covers the most artistic styles in the course of their career.
+To demonstrate the use of the system, I used the [`Spotify-Data 1921-2020`](https://www.kaggle.com/datasets/ektanegi/spotifydata-19212020) that is public on Kaggle.
+The dataset contains more than 16000 songs collected from Spotify Web API.
+Each song has `artistic attributes` such as `liveness`, `tempo`, `dancebility`, `energy`, etc. 
+The system uses these artistic attributes collectively to visualize the diversity of an artist.
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Even though the dataset is particularly about singers, any other dataset with artistic attributes associated with each artwork is equally applicable to the system.
+For example, a dataset on actors with artistic attributes such as genre or emotion for each film is also compatible.
 
-## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+## Visualization Design
+<img src='./img/modal.png'></img>
+The system starts out by presenting a modal with necessary information to introduce the system to users.
+Once the user clicks `Got it!`, they can start their exploration freely.
+Each visualization has an info icon explaining the goal and usage of the visualization.
 
-## Type Support For `.vue` Imports in TS
+A screenshot of the whole system:
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+<img src='./img/system_screenshot.png'></img>
+The visualization design consists of two main parts: 
+a `Beeswarm Chart` for overview of all singers and an `Animated Radar Chart` for detailed visualization of a singer's songs.
+The bottom-right bar chart serves as a complementary view for the radar chart.
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+### Beeswarm Chart
+The goal of the beeswarm chart is to provide an overview for user to choose an interested singer.
+Each 'bee' on the chart represents a singer and the x-axis encodes number of songs they have released.
+The assumption behind using this visualization and encoding is that the more songs a singer have released, the more likely they will be 'diverse'sed, the more likely they will be 'diverse'.
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+A threshold year can be set to filter out songs that are released after that year, as shown:
+<img src='./img/info_icon_2.png'></img>
+The effect of filtering out some older songs is that the whole beeswarm chart needs to be updated accordingly, because now the x-axis coordinates for the singers are different.
+The update animation is shown in the video below:
+<video width="320" height="240" controls>
+  <source src="https://www.youtube.com/watch?v=DyQGx8WWHn8" type="video/mov">
+</video>
+
+### Animated Radar Chart
+The radar chart arranges the songs of the selected singer in a sequence by year.
+For each timestamp the radar chart shows the attributes of a song, and then animates into another.
+The bar chart at the bottom shows the exact value of a selected attribute with current song highlighted.
+A dropdown menu can be used to select other attributes.
+
+The design behind the combination of an animated radar chart and a bar chart is that once any pattern is observed in the animation, user can go to the bar chart to confirm their findings.
+A relatively static bar chart is needed as the pattern can be long-term and is gradually observed in animation, but in a static bar chart user can observe the same pattern at one glance.
+
+A demo can be seen in the video below:
+<video width="320" height="240" controls>
+  <source src="https://www.youtube.com/watch?v=gI04xCrxNSg" type="video/mov">
+</video>
